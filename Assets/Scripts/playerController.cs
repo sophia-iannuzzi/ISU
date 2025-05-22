@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
 
-    private Vector3 nothing = new Vector3(0.0f, 0.0f, 0.0f);
+    private InputAction moveAction;
+    private InputAction attackAction;
     private Rigidbody rb;
     private Vector2 movement;
     private Vector3 movementvelocity;
@@ -19,6 +20,9 @@ public class playerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playeranimatorController = GetComponent<Animator>();
+        moveAction = InputSystem.actions.FindAction("Move");
+        attackAction = InputSystem.actions.FindAction("Attack");
+
     }
 
 
@@ -34,9 +38,27 @@ public class playerController : MonoBehaviour
         Vector3 movementvelocity = movedirection * speed;
 
         rb.linearVelocity = movementvelocity;
-        playeranimatorController.SetBool("move", true);
     }
 
+    void Update()
+    {
+        if (moveAction.IsPressed())
+        {
+            playeranimatorController.SetBool("move", true);
+        }
+        else
+        {
+            playeranimatorController.SetBool("move", false);
+        }
+        // if (attackAction.IsPressed())
+        // {
+        //     playeranimatorController.SetBool("attack", true);
+        // }
+        // else
+        // {
+        //     playeranimatorController.SetBool("attack", false);
+        // }
+    }
     void OnRotatecam(InputValue mouse)
     {
         Vector2 mousemovement = mouse.Get<Vector2>();
@@ -50,7 +72,6 @@ public class playerController : MonoBehaviour
         movementvelocity = movedirection * speed;
 
         rb.linearVelocity = movementvelocity;
-        playeranimatorController.SetBool("move", true);
     }
 
 }
