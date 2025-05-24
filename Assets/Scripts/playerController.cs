@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour
         movedirection.Normalize();
         Vector3 movementvelocity = movedirection * speed;
 
-        if (playeranimatorController.GetBool("attacking") == false)
+        if (playeranimatorController.GetBool("sword") == false)
         {
             rb.linearVelocity = movementvelocity;
         }
@@ -63,17 +63,17 @@ public class playerController : MonoBehaviour
         }
         if (attackAction.IsPressed())
         {
-            playeranimatorController.SetTrigger("attacking");
+            playeranimatorController.SetBool("sword", true);
             rb.linearVelocity = new Vector3(0, 0, 0);
         }
         else
         {
-            playeranimatorController.ResetTrigger("attacking");
+            playeranimatorController.SetBool("sword", false);
         }
     }
     void OnRotatecam(InputValue mouse)
     {
-        if (playeranimatorController.GetBool("attacking") == false)
+        if (playeranimatorController.GetBool("sword") == false)
         {
             Vector2 mousemovement = mouse.Get<Vector2>();
             float movex = mousemovement.x;

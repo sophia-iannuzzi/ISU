@@ -8,12 +8,7 @@ public class enemyAttack : MonoBehaviour
         if (other.tag == "player")
         {
             Debug.Log("player hit");
-            other.gameObject.GetComponent<playerHealth>().ChangeHealth(damage);
+            other.gameObject.GetComponent<playerHealth>().ChangeHealth(-damage);
         }
-    }
-
-    void DoDamage()
-    {
-
     }
 }
