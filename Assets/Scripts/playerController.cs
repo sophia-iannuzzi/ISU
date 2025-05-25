@@ -20,6 +20,10 @@ public class playerController : MonoBehaviour
 
     private Animator playeranimatorController;
     public GameObject character;
+    public GameObject handweapon;
+    private string attack;
+
+    private weaponManager weaponManager;
 
     void Start()
     {
@@ -29,6 +33,10 @@ public class playerController : MonoBehaviour
 
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
+
+        weaponManager = handweapon.GetComponent<weaponManager>();
+        weaponManager.list();
+        attack = weaponManager.attackname;
 
     }
 
@@ -44,7 +52,7 @@ public class playerController : MonoBehaviour
         movedirection.Normalize();
         Vector3 movementvelocity = movedirection * speed;
 
-        if (playeranimatorController.GetBool("sword") == false)
+        if (playeranimatorController.GetBool(attack) == false)
         {
             rb.linearVelocity = movementvelocity;
         }
@@ -63,17 +71,17 @@ public class playerController : MonoBehaviour
         }
         if (attackAction.IsPressed())
         {
-            playeranimatorController.SetBool("sword", true);
+            playeranimatorController.SetBool(attack, true);
             rb.linearVelocity = new Vector3(0, 0, 0);
         }
         else
         {
-            playeranimatorController.SetBool("sword", false);
+            playeranimatorController.SetBool(attack, false);
         }
     }
     void OnRotatecam(InputValue mouse)
     {
-        if (playeranimatorController.GetBool("sword") == false)
+        if (playeranimatorController.GetBool(attack) == false)
         {
             Vector2 mousemovement = mouse.Get<Vector2>();
             float movex = mousemovement.x;

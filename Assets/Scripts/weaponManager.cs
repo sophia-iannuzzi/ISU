@@ -1,12 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class weaponManager : MonoBehaviour
 {
     public GameObject[] weapons;
 
-    void Start()
-    {
+    public string attackname;
 
+
+    public void list()
+    {
+        GameObject weaponhold = weapons[1];
+        attackname = weaponhold.name;
     }
 }
