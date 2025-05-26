@@ -8,13 +8,13 @@ public class playerAnimateController : MonoBehaviour
     public string attack;
 
     private weaponManager weaponManager;
-
-    void Start()
-    {
-        weaponManager = handweapon.GetComponent<weaponManager>();
-        weaponManager.list();
-        attack = weaponManager.attackname;
-    }
+//not being used
+    // void Start()
+    // {
+    //     weaponManager = handweapon.GetComponent<weaponManager>();
+    //     weaponManager.list();
+    //     attack = weaponManager.attackname;
+    // }
     
 
 

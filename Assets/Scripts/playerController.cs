@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour
 
     private Animator playeranimatorController;
     public GameObject character;
-    public GameObject handweapon;
+    public GameObject weaponparent;
     private string attack;
 
     private weaponManager weaponManager;
@@ -34,10 +34,9 @@ public class playerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
 
-        weaponManager = handweapon.GetComponent<weaponManager>();
-        weaponManager.list();
+        weaponManager = weaponparent.GetComponent<weaponManager>();
+        weaponManager.weaponSwitch();
         attack = weaponManager.attackname;
-
     }
 
 
