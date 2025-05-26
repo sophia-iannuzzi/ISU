@@ -39,27 +39,28 @@ public class playerController : MonoBehaviour
         attack = weaponManager.attackname;
     }
 
-
-    void OnMove(InputValue input)
+    public void OnMove(InputValue input)
     {
         movement = input.Get<Vector2>();
         movementx = movement.x;
         movementy = movement.y;
-
-        movedirection = cameraobject.transform.forward * movementy;
-        movedirection = movedirection + cameraobject.transform.right * movementx;
-        movedirection.Normalize();
-        Vector3 movementvelocity = movedirection * speed;
-
-        if (playeranimatorController.GetBool(attack) == false)
-        {
-            rb.linearVelocity = movementvelocity;
-        }
     }
+
 
 
     void Update()
     {
+
+        if (playeranimatorController.GetBool(attack) == false)
+        {   
+            Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
+            Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
+            movedirection = cameradirectionright * movementx + cameradirectionforward * movementy;
+
+            Vector3 movementvelocity = movedirection * speed;
+            rb.linearVelocity = movementvelocity;
+        }
+        
         if (moveAction.IsPressed())
         {
             playeranimatorController.SetBool("walking", true);
@@ -68,6 +69,7 @@ public class playerController : MonoBehaviour
         {
             playeranimatorController.SetBool("walking", false);
         }
+
         if (attackAction.IsPressed())
         {
             playeranimatorController.SetBool(attack, true);
