@@ -4,13 +4,15 @@ public class enemyHealth : MonoBehaviour
 {
     public int maxhealth;
     public int currenthealth;
-    // public GameObject weaponparent;
 
-    // private weaponManager weaponManager;
+    private GameObject parentholder;
+    private GameObject coin;
 
     void Start()
     {
-        // weaponManager = weaponparent.GetComponent<weaponManager>();
+        parentholder = transform.parent.gameObject;
+        coin = parentholder.transform.GetChild(0).gameObject;
+        coin.SetActive(false);
     }
     void OnTriggerEnter(Collider other)
     {
@@ -18,11 +20,15 @@ public class enemyHealth : MonoBehaviour
         {
             Debug.Log("bad hit");
             
-            currenthealth += other.GetComponent<weaponManager>().damage;
+            currenthealth += other.GetComponentInParent<weaponManager>().damage;
         }
         if (currenthealth <= 0)
         {
-            gameObject.SetActive(false);
+            Debug.Log("bad dead");
+            // parentholder.transform.GetChild(1).gameObject.SetActive(false);
+            // parentholder.transform.GetChild(2).gameObject.SetActive(false);
+            // parentholder.meshRenderer.SetActive(false);
+            // coin.SetActive(true);
         }
     }
 }

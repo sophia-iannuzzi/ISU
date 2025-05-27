@@ -8,7 +8,7 @@ public class enemyMovement : MonoBehaviour
     public float speed;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
         chasing = false;
     }
 
