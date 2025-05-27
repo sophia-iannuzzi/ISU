@@ -24,11 +24,12 @@ public class playerController : MonoBehaviour
     private string attack;
 
     private weaponManager weaponManager;
+    private playerInventory playerInventory;
 
     void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
-        parentholder = transform.parent.gameObject;;
+        parentholder = transform.parent.gameObject; ;
 
         playeranimatorController = GetComponentInParent<Animator>();
 
@@ -36,7 +37,8 @@ public class playerController : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("Attack");
 
         weaponManager = weaponparent.GetComponent<weaponManager>();
-        weaponManager.weaponSwitch();
+        playerInventory = GetComponentInParent<playerInventory>();
+
         attack = weaponManager.attackname;
     }
 
@@ -53,7 +55,7 @@ public class playerController : MonoBehaviour
     {
 
         if (playeranimatorController.GetBool(attack) == false)
-        {   
+        {
             Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
             Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
             movedirection = cameradirectionright * movementx + cameradirectionforward * movementy;
@@ -61,7 +63,7 @@ public class playerController : MonoBehaviour
             Vector3 movementvelocity = movedirection * speed;
             rb.linearVelocity = movementvelocity;
         }
-        
+
         if (moveAction.IsPressed())
         {
             playeranimatorController.SetBool("walking", true);
@@ -98,4 +100,14 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void OnWeaponswitch()
+    {
+        weaponManager.WeaponSwitch();
+        attack = weaponManager.attackname;
+    }
+
+    void OnPotionuse()
+    {
+        playerInventory.healthuse();
+    }
 }

@@ -18,7 +18,10 @@ public class playerHealth : MonoBehaviour
         mainText.text = "Life: " + currenthealth;
         if (currenthealth <= 0)
         {
-            gameObject.SetActive(false);
+            Debug.Log("You died");
+            transform.position = new Vector3(0, 0, 0);
+            currenthealth = 5;
+            mainText.text = "Life: " + currenthealth;
         }
     }
 }

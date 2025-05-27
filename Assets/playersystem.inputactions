@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Rotatecam",
+                    "type": "PassThrough",
+                    "id": "00d87c1d-95dd-4f90-9884-4e7f32c9b6f3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6da88d90-71c7-40ee-8c2e-db89a8ab7a52",
@@ -33,10 +42,19 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Weaponswitch",
+                    "type": "Button",
+                    "id": "76ccdc8d-1208-4161-bf23-3e25a9794f0e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -81,16 +99,7 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Rotatecam",
-                    "type": "PassThrough",
-                    "id": "00d87c1d-95dd-4f90-9884-4e7f32c9b6f3",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -492,6 +501,17 @@
                     "action": "Rotatecam",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73ea5979-3da8-4f2a-b214-3a0a54ff09e3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Weaponswitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -512,7 +532,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1012,13 +1032,22 @@
             ]
         },
         {
-            "name": "inventory",
-            "id": "88f08bcc-b811-47c2-9697-037cab466333",
+            "name": "Inventory",
+            "id": "b3fa4602-be67-41a9-b8bf-d3a6eef219d9",
             "actions": [
                 {
-                    "name": "Weaponswitch",
+                    "name": "slot",
                     "type": "Button",
-                    "id": "a6ffb152-6b97-4581-99cb-54f7ea683a43",
+                    "id": "496bf2d9-b3da-4a26-a91b-f54eb269a213",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Potionuse",
+                    "type": "Button",
+                    "id": "ea136519-ad8c-449a-aefd-d3a55ac5b2de",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1028,12 +1057,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "da6ebe84-2c8a-4ae0-a436-688b3ef62425",
-                    "path": "<Keyboard>/e",
+                    "id": "9cc48918-9bd1-40d6-a6a5-0c338a7ac063",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Weaponswitch",
+                    "groups": "",
+                    "action": "slot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04360711-8d30-47de-9b3f-c1f90a449897",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "slot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "864278a7-dc89-4926-aad5-54179392cbd5",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Potionuse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
