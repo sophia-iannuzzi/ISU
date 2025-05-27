@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     private InputAction attackAction;
 
     private Rigidbody rb;
+    private GameObject parentholder;
     private Vector2 movement;
     private Vector3 movementvelocity;
     private float movementx;
@@ -19,7 +20,6 @@ public class playerController : MonoBehaviour
     public GameObject cameraobject;
 
     private Animator playeranimatorController;
-    public GameObject character;
     public GameObject weaponparent;
     private string attack;
 
@@ -27,9 +27,10 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
-        rb = character.GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
+        parentholder = transform.parent.gameObject;;
 
-        playeranimatorController = character.GetComponent<Animator>();
+        playeranimatorController = GetComponentInParent<Animator>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -87,7 +88,7 @@ public class playerController : MonoBehaviour
             Vector2 mousemovement = mouse.Get<Vector2>();
             float movex = mousemovement.x;
             cameraobject.transform.Rotate(0.0f, movex, 0.0f);
-            character.transform.Rotate(0.0f, movex, 0.0f);
+            parentholder.transform.Rotate(0.0f, movex, 0.0f);
 
             movedirection = cameraobject.transform.forward * movementy;
             movedirection = movedirection + cameraobject.transform.right * movementx;

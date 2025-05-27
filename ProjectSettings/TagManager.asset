@@ -8,6 +8,7 @@ TagManager:
   - weapon
   - player
   - movementview
+  - coin
   layers:
   - Default
   - TransparentFX
