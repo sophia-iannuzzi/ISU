@@ -79,7 +79,8 @@ public class playerController : MonoBehaviour
         else
         {
             rb.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-;        }
+            ;
+        }
 
         if (moveAction.IsPressed())
         {
@@ -90,15 +91,16 @@ public class playerController : MonoBehaviour
             playeranimatorController.SetBool("walking", false);
         }
 
+
         // if (attackAction.IsPressed())
         // {
         //     playeranimatorController.SetBool(attack, true);
 
-        // }
-        // else
-        // {
-        //     playeranimatorController.SetBool(attack, false);
-        // }
+            // }
+            // else
+            // {
+            //     playeranimatorController.SetBool(attack, false);
+            // }
     }
     void OnRotatecam(InputValue mouse)
     {
@@ -126,14 +128,17 @@ public class playerController : MonoBehaviour
             {
                 playeranimatorController.Play("drawbow");
                 playeranimatorController.SetBool("aiming", true);
+                Vector3 position = transform.position;
+                position.y = 2;
+                Instantiate(arrow, position, arrow.transform.rotation);
+
             }
             else
             {
                 playeranimatorController.SetBool("aiming", false);
-                Vector3 position = weaponManager.currentweapon.transform.position;
+                playeranimatorController.SetTrigger("attackover");
                 // position.z = position.z * -1;
                 // position.x = position.x * -1;
-                Instantiate(arrow, position, transform.rotation);
                 arrowController.launch();
             }
         }
