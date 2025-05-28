@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour
     private Rigidbody rb;
     private GameObject parentholder;
     public GameObject arrow;
+    private Vector3 position;
     private arrowController arrowController;
 
     private Vector2 movement;
@@ -117,6 +118,13 @@ public class playerController : MonoBehaviour
             movementvelocity = movedirection * speed;
             rb.linearVelocity = movementvelocity;
         }
+        if (playeranimatorController.GetBool("aiming") == true)
+        {
+            Vector2 mousemovement = mouse.Get<Vector2>();
+            float movex = mousemovement.x;
+            cameraobject.transform.Rotate(0.0f, movex, 0.0f);
+            parentholder.transform.Rotate(0.0f, movex, 0.0f);
+        }
     }
 
     void OnAttack()
@@ -128,17 +136,17 @@ public class playerController : MonoBehaviour
             {
                 playeranimatorController.Play("drawbow");
                 playeranimatorController.SetBool("aiming", true);
-                Vector3 position = transform.position;
+                position = transform.position;
                 position.y = 2;
-                Instantiate(arrow, position, arrow.transform.rotation);
 
             }
             else
             {
+                GameObject shotarrow = Instantiate(arrow, position, cameraobject.transform.rotation);
+                Rigidbody arrowrb = shotarrow.GetComponent<Rigidbody>();
+                arrowrb.AddForce(10, 0, 0);
                 playeranimatorController.SetBool("aiming", false);
                 playeranimatorController.SetTrigger("attackover");
-                // position.z = position.z * -1;
-                // position.x = position.x * -1;
                 arrowController.launch();
             }
         }

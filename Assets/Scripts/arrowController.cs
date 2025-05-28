@@ -13,9 +13,9 @@ public class arrowController : MonoBehaviour
 
     public void launch()
     {
-        rb = GetComponent<Rigidbody>();
-        Debug.Log("arrow launched");
-        rb.AddForce(0.0f, 10, 0.0f);
+        // rb = GetComponent<Rigidbody>();
+        // Debug.Log("arrow launched");
+        // rb.AddForce(0.0f, 10, 0.0f);
 
     }
 }

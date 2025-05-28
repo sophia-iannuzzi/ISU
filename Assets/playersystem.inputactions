@@ -24,9 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Look",
+                    "name": "bowaim",
                     "type": "Value",
-                    "id": "6da88d90-71c7-40ee-8c2e-db89a8ab7a52",
+                    "id": "9976a234-9e8e-4321-8c53-00c2d567a666",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -249,34 +249,12 @@
                 },
                 {
                     "name": "",
-                    "id": "e8e9b249-53cb-4c3b-9dce-46a5bab68e02",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8d4cdb7d-1b12-4548-9e64-6b554c980cb0",
+                    "id": "33200f97-bebe-46a0-ac0a-c1f6492c8336",
                     "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "881a72c2-8cb5-4930-96db-0442d77094c8",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "bowaim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
