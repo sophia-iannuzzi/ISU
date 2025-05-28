@@ -25,5 +25,10 @@ public class enemyHealth : MonoBehaviour
             Destroy(parentholder);
             Instantiate(coin, transform.position, transform.rotation);
         }
+        if (other.tag == "arrow")
+        {
+            Debug.Log("bad arrow hit");
+            currenthealth += -3;
+        }
     }
 }

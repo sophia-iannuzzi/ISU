@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour
 {
-
     private InputAction moveAction;
     private InputAction attackAction;
 
     private Rigidbody rb;
     private GameObject parentholder;
+    public GameObject arrow;
+    private arrowController arrowController;
+
     private Vector2 movement;
     private Vector3 movementvelocity;
     private float movementx;
@@ -28,10 +30,12 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponentInParent<Rigidbody>();
         parentholder = transform.parent.gameObject; ;
 
         playeranimatorController = GetComponentInParent<Animator>();
+        arrowController = arrow.GetComponent<arrowController>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -47,6 +51,15 @@ public class playerController : MonoBehaviour
         movement = input.Get<Vector2>();
         movementx = movement.x;
         movementy = movement.y;
+
+        playeranimatorController.SetBool("walking", true);
+
+        // Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
+        // Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
+        // movedirection = cameradirectionright * movementx + cameradirectionforward * movementy;
+
+        // Vector3 movementvelocity = movedirection * speed;
+        // rb.linearVelocity = movementvelocity;
     }
 
 
@@ -54,7 +67,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
 
-        if (playeranimatorController.GetBool(attack) == false)
+        if (playeranimatorController.GetBool("attackover") == false)
         {
             Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
             Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
@@ -63,6 +76,10 @@ public class playerController : MonoBehaviour
             Vector3 movementvelocity = movedirection * speed;
             rb.linearVelocity = movementvelocity;
         }
+        else
+        {
+            rb.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+;        }
 
         if (moveAction.IsPressed())
         {
@@ -73,19 +90,19 @@ public class playerController : MonoBehaviour
             playeranimatorController.SetBool("walking", false);
         }
 
-        if (attackAction.IsPressed())
-        {
-            playeranimatorController.SetBool(attack, true);
-            rb.linearVelocity = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            playeranimatorController.SetBool(attack, false);
-        }
+        // if (attackAction.IsPressed())
+        // {
+        //     playeranimatorController.SetBool(attack, true);
+
+        // }
+        // else
+        // {
+        //     playeranimatorController.SetBool(attack, false);
+        // }
     }
     void OnRotatecam(InputValue mouse)
     {
-        if (playeranimatorController.GetBool(attack) == false)
+        if (playeranimatorController.GetBool("attackover") == false)
         {
             Vector2 mousemovement = mouse.Get<Vector2>();
             float movex = mousemovement.x;
@@ -100,10 +117,39 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void OnAttack()
+    {
+        playeranimatorController.SetBool("walking", false);
+        if (attack == "bow")
+        {
+            if (playeranimatorController.GetBool("aiming") == false)
+            {
+                playeranimatorController.Play("drawbow");
+                playeranimatorController.SetBool("aiming", true);
+            }
+            else
+            {
+                playeranimatorController.SetBool("aiming", false);
+                Vector3 position = weaponManager.currentweapon.transform.position;
+                // position.z = position.z * -1;
+                // position.x = position.x * -1;
+                Instantiate(arrow, position, transform.rotation);
+                arrowController.launch();
+            }
+        }
+        else
+        {
+            playeranimatorController.Play(attack + "attack");
+        }
+        playeranimatorController.SetTrigger("attackover");
+    }
     void OnWeaponswitch()
     {
-        weaponManager.WeaponSwitch();
-        attack = weaponManager.attackname;
+        if (playeranimatorController.GetBool("attackover") == false)
+        {
+            weaponManager.WeaponSwitch();
+            attack = weaponManager.attackname;
+        }
     }
 
     void OnPotionuse()

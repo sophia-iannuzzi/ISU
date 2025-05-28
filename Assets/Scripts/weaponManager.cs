@@ -5,15 +5,18 @@ public class weaponManager : MonoBehaviour
 
     public int weaponnum;
     public GameObject[] weapons;
-    private int[] wepdamages = { -1, -2 };
+    private int[] wepdamages = { -1, -2, 0};
     public int damage;
     public string attackname;
+
+    public GameObject currentweapon;
 
     public TextMeshProUGUI weapontext;
 
     void Start()
     {
         weaponnum = 0;
+
 
         GameObject weaponhold = weapons[weaponnum];
         attackname = weaponhold.name;
@@ -26,6 +29,7 @@ public class weaponManager : MonoBehaviour
             else
             {
                 weapon.SetActive(true);
+                currentweapon = weapon;
                 damage = wepdamages[weaponnum];
                 damage = wepdamages[weaponnum];
                 weapontext.text = weapon.name;
@@ -36,7 +40,7 @@ public class weaponManager : MonoBehaviour
     {
         Debug.Log("weapon switch");
         weaponnum++;
-        if (weaponnum >= 2)
+        if (weaponnum >= 3)
         {
             weaponnum = 0;
         }
@@ -53,6 +57,7 @@ public class weaponManager : MonoBehaviour
             else
             {
                 weapon.SetActive(true);
+                currentweapon = weapon;
                 damage = wepdamages[weaponnum];
                 weapontext.text = weapon.name;
             }

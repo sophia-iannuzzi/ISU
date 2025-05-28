@@ -9,6 +9,7 @@ TagManager:
   - player
   - movementview
   - coin
+  - arrow
   layers:
   - Default
   - TransparentFX
