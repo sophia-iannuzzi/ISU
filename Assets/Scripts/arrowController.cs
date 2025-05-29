@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class arrowController : MonoBehaviour
 {
-    private Rigidbody rb;
-    public GameObject arrow;
 
+    private GameObject arrow;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-
+        arrow = transform.parent.gameObject;
+        Destroy(arrow, 10);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag != "movementview")
+        {
+            Destroy(GetComponentInParent<Rigidbody>());
+            Destroy(arrow, 4);
+        }
     }
 
-    public void launch()
+    void OnTriggerExit(Collider other)
     {
-        // rb = GetComponent<Rigidbody>();
-        // Debug.Log("arrow launched");
-        // rb.AddForce(0.0f, 10, 0.0f);
-
+        Destroy(arrow);
     }
 }

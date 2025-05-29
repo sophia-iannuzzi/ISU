@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bad (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6042244042957518958, guid: 14616a8fc44dcae4aa055e1a4f92f654, type: 3}
+      propertyPath: m_TagString
+      value: movementview
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -343,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 3458367858061166460, guid: 0076e8c787aece14a893e31b50497075, type: 3}
+  arrowspot: {fileID: 3672370473736171686}
   speed: 7
   cameraobject: {fileID: 962409920}
   weaponparent: {fileID: 6847763956001007359}

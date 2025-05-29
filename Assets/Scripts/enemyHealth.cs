@@ -19,16 +19,16 @@ public class enemyHealth : MonoBehaviour
             Debug.Log("bad hit");
             currenthealth += other.GetComponentInParent<weaponManager>().damage;
         }
+        if (other.tag == "arrow")
+        {
+            Debug.Log("bad arrow hit");
+            currenthealth += -1;
+        }
         if (currenthealth <= 0)
         {
             Debug.Log("bad dead");
             Destroy(parentholder);
             Instantiate(coin, transform.position, transform.rotation);
-        }
-        if (other.tag == "arrow")
-        {
-            Debug.Log("bad arrow hit");
-            currenthealth += -3;
         }
     }
 }

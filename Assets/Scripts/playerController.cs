@@ -8,7 +8,9 @@ public class playerController : MonoBehaviour
 
     private Rigidbody rb;
     private GameObject parentholder;
+
     public GameObject arrow;
+    public GameObject arrowspot;
     private Vector3 position;
     private arrowController arrowController;
 
@@ -136,18 +138,20 @@ public class playerController : MonoBehaviour
             {
                 playeranimatorController.Play("drawbow");
                 playeranimatorController.SetBool("aiming", true);
-                position = transform.position;
-                position.y = 2;
+                // position = transform.position;
+                // position.y = 2;
 
             }
             else
             {
-                GameObject shotarrow = Instantiate(arrow, position, cameraobject.transform.rotation);
-                Rigidbody arrowrb = shotarrow.GetComponent<Rigidbody>();
-                arrowrb.AddForce(10, 0, 0);
+                Vector3 arrowoff = arrowspot.transform.position + new Vector3(0, 0.2f, 0);
+                GameObject shotarrow = Instantiate(arrow, arrowoff, cameraobject.transform.rotation);
+                // // Rigidbody arrowrb = shotarrow.GetComponent<Rigidbody>();
+                // shotarrow.GetComponent<Rigidbody>().AddForce(transform.forward * 25f);
                 playeranimatorController.SetBool("aiming", false);
                 playeranimatorController.SetTrigger("attackover");
-                arrowController.launch();
+                shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * 500f);
+
             }
         }
         else
