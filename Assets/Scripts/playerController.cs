@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
-
+    
         rb = GetComponentInParent<Rigidbody>();
         parentholder = transform.parent.gameObject; ;
 
@@ -56,13 +56,6 @@ public class playerController : MonoBehaviour
         movementy = movement.y;
 
         playeranimatorController.SetBool("walking", true);
-
-        // Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
-        // Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
-        // movedirection = cameradirectionright * movementx + cameradirectionforward * movementy;
-
-        // Vector3 movementvelocity = movedirection * speed;
-        // rb.linearVelocity = movementvelocity;
     }
 
 
@@ -93,17 +86,6 @@ public class playerController : MonoBehaviour
         {
             playeranimatorController.SetBool("walking", false);
         }
-
-
-        // if (attackAction.IsPressed())
-        // {
-        //     playeranimatorController.SetBool(attack, true);
-
-            // }
-            // else
-            // {
-            //     playeranimatorController.SetBool(attack, false);
-            // }
     }
     void OnRotatecam(InputValue mouse)
     {
@@ -138,16 +120,13 @@ public class playerController : MonoBehaviour
             {
                 playeranimatorController.Play("drawbow");
                 playeranimatorController.SetBool("aiming", true);
-                // position = transform.position;
-                // position.y = 2;
 
             }
             else
             {
                 Vector3 arrowoff = arrowspot.transform.position + new Vector3(0, 0.2f, 0);
                 GameObject shotarrow = Instantiate(arrow, arrowoff, cameraobject.transform.rotation);
-                // // Rigidbody arrowrb = shotarrow.GetComponent<Rigidbody>();
-                // shotarrow.GetComponent<Rigidbody>().AddForce(transform.forward * 25f);
+
                 playeranimatorController.SetBool("aiming", false);
                 playeranimatorController.SetTrigger("attackover");
                 shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * 500f);

@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
@@ -5,7 +7,11 @@ public class enemyMovement : MonoBehaviour
     private Rigidbody rb;
     private bool chasing;
     private GameObject player;
+
+    // public GameObject enemyparent;
     public float speed;
+
+    float movedirectionx;
     void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
@@ -16,7 +22,7 @@ public class enemyMovement : MonoBehaviour
     {
         if (chasing == true)
         {
-            float movedirectionx = player.transform.position.x - transform.position.x;
+            movedirectionx = player.transform.position.x - transform.position.x;
             float movedirectionz = player.transform.position.z - transform.position.z;
             Vector3 movedirection = new Vector3(movedirectionx, 0.0f, movedirectionz).normalized;
             rb.linearVelocity = movedirection * speed;
@@ -31,11 +37,21 @@ public class enemyMovement : MonoBehaviour
             {
                 player = other.gameObject;
             }
-            chasing = true;
+            // chasing = true;
+            // movedirectionx = player.transform.position.x - transform.position.x;
+            // GameObject enemyparent = transform.parent.gameObject;
+            // float num = tangent((player.transform.position.x + transform.position.x) / (player.transform.position.z + transform.position.z));
+            // // enemyparent.transform.Rotate(0.0f, movedirectionx, 0.0f);
+            // Debug.Log(num);
         }
     }
 
-        void OnTriggerExit(Collider other)
+    private float TangentControl(float v)
+    {
+        throw new NotImplementedException();
+    }
+
+    void OnTriggerExit(Collider other)
     {
         if (other.tag == "player")
         {
