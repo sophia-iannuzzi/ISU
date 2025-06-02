@@ -6,7 +6,7 @@ public class enemyMovement : MonoBehaviour
 {
     private Rigidbody rb;
     private bool chasing;
-    private GameObject player;
+    public GameObject player;
 
     // public GameObject enemyparent;
     public float speed;
@@ -22,11 +22,20 @@ public class enemyMovement : MonoBehaviour
     {
         if (chasing == true)
         {
-            movedirectionx = player.transform.position.x - transform.position.x;
-            float movedirectionz = player.transform.position.z - transform.position.z;
-            Vector3 movedirection = new Vector3(movedirectionx, 0.0f, movedirectionz).normalized;
-            rb.linearVelocity = movedirection * speed;
+            // movedirectionx = player.transform.position.x - transform.position.x;
+            // float movedirectionz = player.transform.position.z - transform.position.z;
+            // Vector3 movedirection = new Vector3(movedirectionx, 0.0f, movedirectionz).normalized;
+            // rb.linearVelocity = movedirection * speed;
         }
+        float thing1 = transform.parent.gameObject.transform.position.x - player.transform.position.x;
+        float thing2 = transform.parent.gameObject.transform.position.z - player.transform.position.z;
+        Vector2 thing3 = new Vector2(thing1, thing2) * -1;
+        transform.parent.gameObject.transform.Rotate(0.0f, thing3.y, 0.0f);
+        
+
+        // Quaternion rotation = Quaternion.Euler(0.0f, movedirectionx * 25, 0.0f);
+        // float rot = rotation.y + rotation.x;
+        // transform.parent.gameObject.transform.Rotate(0.0f, rot, 0.0f);
     }
 
     void OnTriggerEnter(Collider other)
@@ -37,12 +46,12 @@ public class enemyMovement : MonoBehaviour
             {
                 player = other.gameObject;
             }
-            // chasing = true;
-            // movedirectionx = player.transform.position.x - transform.position.x;
+            chasing = true;
             // GameObject enemyparent = transform.parent.gameObject;
             // float num = tangent((player.transform.position.x + transform.position.x) / (player.transform.position.z + transform.position.z));
             // // enemyparent.transform.Rotate(0.0f, movedirectionx, 0.0f);
             // Debug.Log(num);
+             movedirectionx = player.transform.position.x - transform.position.x;
         }
     }
 
