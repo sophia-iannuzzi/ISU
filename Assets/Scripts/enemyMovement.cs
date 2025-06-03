@@ -1,41 +1,47 @@
-using System;
-using UnityEditor.ShaderGraph;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
 {
-    private Rigidbody rb;
+    public NavMeshAgent agent;
+    private Animator goblinAnimationController;
     private bool chasing;
     public GameObject player;
 
-    // public GameObject enemyparent;
     public float speed;
+    public float attackrange;
 
     float movedirectionx;
     void Start()
     {
-        rb = GetComponentInParent<Rigidbody>();
+        goblinAnimationController = GetComponent<Animator>();
         chasing = false;
+
     }
 
     void Update()
     {
-        if (chasing == true)
+        if (chasing == true && goblinAnimationController.GetBool("attacking") == false)
         {
-            // movedirectionx = player.transform.position.x - transform.position.x;
-            // float movedirectionz = player.transform.position.z - transform.position.z;
-            // Vector3 movedirection = new Vector3(movedirectionx, 0.0f, movedirectionz).normalized;
-            // rb.linearVelocity = movedirection * speed;
+            goblinAnimationController.SetBool("walking", true);
+            agent.SetDestination(player.transform.position);
+            if (Vector2.Distance(player.transform.position, transform.position) < attackrange)
+            {
+                attack();
+            }
         }
-        float thing1 = transform.parent.gameObject.transform.position.x - player.transform.position.x;
-        float thing2 = transform.parent.gameObject.transform.position.z - player.transform.position.z;
-        Vector2 thing3 = new Vector2(thing1, thing2) * -1;
-        transform.parent.gameObject.transform.Rotate(0.0f, thing3.y, 0.0f);
-        
+        if (player != null && Vector2.Distance(player.transform.position, transform.position) > attackrange)
+        {
+            goblinAnimationController.SetBool("attacking", false);
+        }
+    }
 
-        // Quaternion rotation = Quaternion.Euler(0.0f, movedirectionx * 25, 0.0f);
-        // float rot = rotation.y + rotation.x;
-        // transform.parent.gameObject.transform.Rotate(0.0f, rot, 0.0f);
+    void attack()
+    {
+        agent.SetDestination(transform.position);
+        goblinAnimationController.SetBool("walking", false);
+        goblinAnimationController.SetBool("attacking", true);
+        goblinAnimationController.Play("attack");
     }
 
     void OnTriggerEnter(Collider other)
@@ -47,17 +53,7 @@ public class enemyMovement : MonoBehaviour
                 player = other.gameObject;
             }
             chasing = true;
-            // GameObject enemyparent = transform.parent.gameObject;
-            // float num = tangent((player.transform.position.x + transform.position.x) / (player.transform.position.z + transform.position.z));
-            // // enemyparent.transform.Rotate(0.0f, movedirectionx, 0.0f);
-            // Debug.Log(num);
-             movedirectionx = player.transform.position.x - transform.position.x;
         }
-    }
-
-    private float TangentControl(float v)
-    {
-        throw new NotImplementedException();
     }
 
     void OnTriggerExit(Collider other)
@@ -65,7 +61,8 @@ public class enemyMovement : MonoBehaviour
         if (other.tag == "player")
         {
             chasing = false;
-            rb.linearVelocity = new Vector3(0, 0, 0);
+            agent.SetDestination(transform.position);
+            goblinAnimationController.SetBool("walking", false);
         }
     }
 }

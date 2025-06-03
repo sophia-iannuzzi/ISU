@@ -10,6 +10,7 @@ TagManager:
   - movementview
   - coin
   - arrow
+  - terrain
   layers:
   - Default
   - TransparentFX
