@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Choosehealth",
+                    "type": "Button",
+                    "id": "797ac018-1276-4d0f-84b7-126ce950a05c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -453,6 +462,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Weaponswitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b3f1ab3-f5b2-499e-b4f4-cbe06bbeacc9",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choosehealth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1511,41 +1531,8 @@
         {
             "name": "Inventory",
             "id": "b3fa4602-be67-41a9-b8bf-d3a6eef219d9",
-            "actions": [
-                {
-                    "name": "slot",
-                    "type": "Button",
-                    "id": "496bf2d9-b3da-4a26-a91b-f54eb269a213",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "9cc48918-9bd1-40d6-a6a5-0c338a7ac063",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "slot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04360711-8d30-47de-9b3f-c1f90a449897",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "slot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

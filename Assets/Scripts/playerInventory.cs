@@ -6,6 +6,7 @@ public class playerInventory : MonoBehaviour
 {
     public int money;
     public int healthpotion;
+    public int speedpotiion;
     public TextMeshProUGUI moneytext;
 
     private playerHealth playerHealth;
@@ -26,6 +27,7 @@ public class playerInventory : MonoBehaviour
         }
     }
 
+
     public void healthuse()
     {
         if (healthpotion > 0 && playerHealth.currenthealth < playerHealth.maxhealth)
@@ -34,5 +36,10 @@ public class playerInventory : MonoBehaviour
             healthpotion = healthpotion - 1;
             playerHealth.ChangeHealth(1);
         }
+    }
+
+    public void speeduse(Rigidbody rb)
+    {
+        rb.AddForce(transform.forward * 10);
     }
 }

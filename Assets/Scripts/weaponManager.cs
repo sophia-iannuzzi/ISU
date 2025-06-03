@@ -5,7 +5,7 @@ public class weaponManager : MonoBehaviour
 
     public int weaponnum;
     public GameObject[] weapons;
-    private int[] wepdamages = { -1, -2, 0};
+    public int[] wepdamages = { -1, -2, 0};
     public int damage;
     public string attackname;
 

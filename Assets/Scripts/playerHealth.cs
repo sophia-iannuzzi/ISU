@@ -17,13 +17,13 @@ public class playerHealth : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         currenthealth = currenthealth + amount;
-        mainText.text = "Life: " + currenthealth + "/5";
+        mainText.text = "Life: " + currenthealth + "/" + maxhealth;
         if (currenthealth <= 0)
         {
             Debug.Log("You died");
             transform.position = new Vector3(0, 0, 0);
-            currenthealth = 5;
-            mainText.text = " ";
+            currenthealth = maxhealth;
+            mainText.text = "Life: " + currenthealth + "/" + maxhealth;
         }
     }
 }

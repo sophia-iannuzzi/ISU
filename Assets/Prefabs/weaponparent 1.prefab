@@ -438,8 +438,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35908708, y: 0.12183945, z: 0.3267326}
-  m_Center: {x: -0.0055563184, y: 0.00062420283, z: 0.6678348}
+  m_Size: {x: 0.45114645, y: 0.38947466, z: 0.32673264}
+  m_Center: {x: 0.0055310824, y: -0.029180884, z: 0.6678348}
 --- !u!1 &3355376340769201866
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,8 +737,10 @@ MonoBehaviour:
   - {fileID: 951594138209422319}
   - {fileID: 2585113916311582697}
   - {fileID: 3581262188929211073}
+  wepdamages: fefffffffbffffff00000000
   damage: -1
   attackname: sword
+  currentweapon: {fileID: 0}
   weapontext: {fileID: 0}
 --- !u!1 &4765528038061535951
 GameObject:

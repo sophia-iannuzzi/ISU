@@ -12,6 +12,16 @@ public class enemyHealth : MonoBehaviour
     {
         parentholder = transform.parent.gameObject;
     }
+
+    void Update()
+    {
+        if (currenthealth <= 0)
+        {
+            Debug.Log("bad dead");
+            Destroy(parentholder);
+            Instantiate(coin, transform.position, transform.rotation);
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "weapon")
@@ -23,12 +33,6 @@ public class enemyHealth : MonoBehaviour
         {
             Debug.Log("bad arrow hit");
             currenthealth += -1;
-        }
-        if (currenthealth <= 0)
-        {
-            Debug.Log("bad dead");
-            Destroy(parentholder);
-            Instantiate(coin, transform.position, transform.rotation);
         }
     }
 }

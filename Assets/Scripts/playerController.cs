@@ -11,7 +11,6 @@ public class playerController : MonoBehaviour
 
     public GameObject arrow;
     public GameObject arrowspot;
-    private Vector3 position;
     private arrowController arrowController;
 
     private Vector2 movement;
@@ -26,9 +25,11 @@ public class playerController : MonoBehaviour
 
     private Animator playeranimatorController;
     public GameObject weaponparent;
+    public float arrowspeed;
     private string attack;
 
     private weaponManager weaponManager;
+    private string potion;
     private playerInventory playerInventory;
 
     void Start()
@@ -129,7 +130,7 @@ public class playerController : MonoBehaviour
 
                 playeranimatorController.SetBool("aiming", false);
                 playeranimatorController.SetTrigger("attackover");
-                shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * 500f);
+                shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * arrowspeed);
 
             }
         }
@@ -148,6 +149,10 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void OnChoosehealth()
+    {
+        potion = "healthuse";
+    }
     void OnPotionuse()
     {
         playerInventory.healthuse();

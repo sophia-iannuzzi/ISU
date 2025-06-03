@@ -3,45 +3,60 @@ using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
     private Animator goblinAnimationController;
-    private bool chasing;
+    [SerializeField] private bool chasing;
     public GameObject player;
 
     public float speed;
     public float attackrange;
 
     float movedirectionx;
+
+
     void Start()
     {
         goblinAnimationController = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         chasing = false;
 
     }
 
     void Update()
     {
-        if (chasing == true && goblinAnimationController.GetBool("attacking") == false)
+        if (chasing == true && goblinAnimationController.GetBool("attackdone") == false)
         {
-            goblinAnimationController.SetBool("walking", true);
-            agent.SetDestination(player.transform.position);
             if (Vector2.Distance(player.transform.position, transform.position) < attackrange)
             {
                 attack();
             }
+            else
+            {
+                goblinAnimationController.SetBool("walking", true);
+                agent.SetDestination(player.transform.position);
+            }
         }
-        if (player != null && Vector2.Distance(player.transform.position, transform.position) > attackrange)
+        else if (chasing != true)
         {
-            goblinAnimationController.SetBool("attacking", false);
+            patrol();
         }
     }
 
     void attack()
     {
         agent.SetDestination(transform.position);
-        goblinAnimationController.SetBool("walking", false);
-        goblinAnimationController.SetBool("attacking", true);
+        goblinAnimationController.SetBool("walking", true);
+        goblinAnimationController.SetTrigger("attackdone");
         goblinAnimationController.Play("attack");
+    }
+
+    void patrol()
+    {
+        float numx = Random.Range(-10, 10);
+        float numz = Random.Range(-10, 10);
+        Vector3 newpos = new Vector3(transform.position.x + numx, 0.0f, transform.position.z + numz);
+        agent.SetDestination(newpos);
+        goblinAnimationController.SetBool("walking", true);
     }
 
     void OnTriggerEnter(Collider other)
