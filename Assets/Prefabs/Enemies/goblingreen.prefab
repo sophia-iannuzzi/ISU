@@ -1940,7 +1940,7 @@ GameObject:
   - component: {fileID: 6999006763614226876}
   - component: {fileID: 7658123062079678612}
   m_Layer: 0
-  m_Name: goblin
+  m_Name: goblingreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

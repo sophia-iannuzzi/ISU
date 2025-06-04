@@ -43,7 +43,7 @@ public class playerInventory : MonoBehaviour
             }
             else
             {
-                Debug.Log("not enough mola");
+                Debug.Log("not enough money");
             }
         }
         if (other.tag == "speedpotion")
@@ -56,7 +56,7 @@ public class playerInventory : MonoBehaviour
             }
             else
             {
-                Debug.Log("not enough mola");
+                Debug.Log("not enough money");
             }
         }
         if (other.tag == "arrowitem")
