@@ -5,22 +5,23 @@ public class playerController : MonoBehaviour
 {
     private InputAction moveAction;
     private InputAction attackAction;
+    public bool speedused;
 
     private Rigidbody rb;
     private GameObject parentholder;
 
     public GameObject arrow;
     public GameObject arrowspot;
-    private arrowController arrowController;
 
     private Vector2 movement;
-    private Vector3 movementvelocity;
+    public Vector3 movementvelocity;
     private float movementx;
     private float movementy;
 
     private Vector3 movedirection;
 
     public int speed;
+    public int startspeed;
     public GameObject cameraobject;
 
     private Animator playeranimatorController;
@@ -29,17 +30,18 @@ public class playerController : MonoBehaviour
     private string attack;
 
     private weaponManager weaponManager;
-    private string potion;
     private playerInventory playerInventory;
+    private float time;
 
     void Start()
     {
-    
+        Cursor.visible = false;
+
+        startspeed = speed;
         rb = GetComponentInParent<Rigidbody>();
         parentholder = transform.parent.gameObject; ;
 
         playeranimatorController = GetComponentInParent<Animator>();
-        arrowController = arrow.GetComponent<arrowController>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -48,6 +50,8 @@ public class playerController : MonoBehaviour
         playerInventory = GetComponentInParent<playerInventory>();
 
         attack = weaponManager.attackname;
+
+        speedused = false;
     }
 
     public void OnMove(InputValue input)
@@ -63,7 +67,16 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-
+        if (speedused == true)
+        {
+            time += Time.deltaTime;
+            if (time > 3)
+            {
+                time = 0;
+                speed = startspeed;
+                speedused = false;
+            }
+        }
         if (playeranimatorController.GetBool("attackover") == false)
         {
             Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
@@ -76,7 +89,6 @@ public class playerController : MonoBehaviour
         else
         {
             rb.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-            ;
         }
 
         if (moveAction.IsPressed())
@@ -117,28 +129,37 @@ public class playerController : MonoBehaviour
         playeranimatorController.SetBool("walking", false);
         if (attack == "bow")
         {
-            if (playeranimatorController.GetBool("aiming") == false)
+            if (playerInventory.arrows > 0)
             {
-                playeranimatorController.Play("drawbow");
-                playeranimatorController.SetBool("aiming", true);
+                if (playeranimatorController.GetBool("aiming") == false)
+                {
+                    playeranimatorController.Play("drawbow");
+                    playeranimatorController.SetBool("aiming", true);
 
+                }
+                else
+                {
+                    Vector3 arrowoff = arrowspot.transform.position + new Vector3(0, 0.2f, 0);
+                    GameObject shotarrow = Instantiate(arrow, arrowoff, cameraobject.transform.rotation);
+
+                    playeranimatorController.SetBool("aiming", false);
+                    playeranimatorController.SetTrigger("attackover");
+                    shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * arrowspeed);
+                    playeranimatorController.SetTrigger("attackover");
+
+                    playerInventory.arrowchange(-1);
+                }
             }
             else
             {
-                Vector3 arrowoff = arrowspot.transform.position + new Vector3(0, 0.2f, 0);
-                GameObject shotarrow = Instantiate(arrow, arrowoff, cameraobject.transform.rotation);
-
-                playeranimatorController.SetBool("aiming", false);
-                playeranimatorController.SetTrigger("attackover");
-                shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * arrowspeed);
-
+                Debug.Log("not enough arrows");
             }
         }
         else
         {
             playeranimatorController.Play(attack + "attack");
+            playeranimatorController.SetTrigger("attackover");
         }
-        playeranimatorController.SetTrigger("attackover");
     }
     void OnWeaponswitch()
     {
@@ -149,12 +170,15 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void OnChoosehealth()
-    {
-        potion = "healthuse";
-    }
-    void OnPotionuse()
+    void OnHealthuse()
     {
         playerInventory.healthuse();
+    }
+
+    void OnSpeeduse()
+    {
+        speedused = true;
+        playerInventory.speeduse();
+        speed = playerInventory.speed;
     }
 }

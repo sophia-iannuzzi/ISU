@@ -11,6 +11,9 @@ TagManager:
   - coin
   - arrow
   - terrain
+  - healthpotion
+  - speedpotion
+  - arrowitem
   layers:
   - Default
   - TransparentFX

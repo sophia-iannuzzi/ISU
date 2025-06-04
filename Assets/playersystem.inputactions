@@ -105,22 +105,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Potionuse",
+                    "name": "Healthuse",
                     "type": "Button",
                     "id": "922fd423-bd78-42c9-bb1a-0c9917b924e4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Choosehealth",
+                    "name": "Speeduse",
                     "type": "Button",
-                    "id": "797ac018-1276-4d0f-84b7-126ce950a05c",
+                    "id": "66917398-9173-485f-ba71-7f04161db4b4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -336,11 +336,22 @@
                 {
                     "name": "",
                     "id": "b1a378bf-d686-4532-92a4-f4b63212f7b7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Potionuse",
+                    "action": "Healthuse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e9d51a7-a377-403e-946a-24367c1fb64d",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Speeduse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -462,17 +473,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Weaponswitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7b3f1ab3-f5b2-499e-b4f4-cbe06bbeacc9",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Choosehealth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
