@@ -5,6 +5,7 @@ public class enemyMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Animator goblinAnimationController;
+    private dragonAttack dragonAttack;
     [SerializeField] private bool chasing;
     public GameObject player;
 
@@ -18,6 +19,7 @@ public class enemyMovement : MonoBehaviour
     {
         goblinAnimationController = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        dragonAttack = GetComponentInChildren<dragonAttack>();
         chasing = false;
 
     }
@@ -44,6 +46,7 @@ public class enemyMovement : MonoBehaviour
 
     void attack()
     {
+        // dragonAttack.attack();
         agent.SetDestination(transform.position);
         goblinAnimationController.SetBool("walking", true);
         goblinAnimationController.SetTrigger("attackdone");

@@ -8,38 +8,40 @@ public class dragonController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator dragonanimatorController;
     [SerializeField] private bool chasing;
+
     private bool attacking;
     public float attackrange;
-    private Transform currentspot;
+    public float chaserange;
     private GameObject player;
+
+    private float time;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         dragonanimatorController = GetComponent<Animator>();
+        time = 0;
         chasing = false;
         attacking = false;
     }
 
     void Update()
     {
-        if (chasing == true)
+        if (player != null)
         {
-            if (Vector2.Distance(player.transform.position, transform.position) < attackrange && attacking == false)
+            float distance = Vector2.Distance(player.transform.position, transform.position);
+            if (distance <= chaserange)
             {
-                transform.LookAt(player.transform);
-                currentspot = player.transform;
-                attack();
-            }
-            else if (attacking == true)
-            {
-                transform.LookAt(currentspot);
-            }
-            else
-            {
-                chase();
+                if (distance <= attackrange && time > 6)
+                {
+                    attack();
+                }
+                else if (dragonanimatorController.GetBool("attackdone") == false)
+                {
+                    chase();
+                }
+                time += Time.deltaTime;
             }
         }
-
     }
 
     void patrol()
@@ -48,16 +50,20 @@ public class dragonController : MonoBehaviour
     }
     void chase()
     {
-        dragonanimatorController.SetBool("walking", true);
-        agent.SetDestination(player.transform.position);
+        float distance = Vector2.Distance(player.transform.position, transform.position);
+        if (distance > attackrange)
+        {
+            dragonanimatorController.SetBool("walking", true);
+            agent.SetDestination(player.transform.position);
+        }
     }
 
     void attack()
     {
-        attacking = true;
-        
+        time = 0;
+
         agent.SetDestination(transform.position);
-        transform.LookAt(currentspot);
+
         dragonanimatorController.Play("attack");
         dragonanimatorController.SetTrigger("attackdone");
     }
@@ -70,17 +76,6 @@ public class dragonController : MonoBehaviour
             {
                 player = other.gameObject;
             }
-            chasing = true;
-            Debug.Log("en");
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "player")
-        {
-            dragonanimatorController.SetBool("walking", false);
-            chasing = false;
         }
     }
 }
