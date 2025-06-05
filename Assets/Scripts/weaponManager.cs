@@ -6,6 +6,7 @@ public class weaponManager : MonoBehaviour
     public int weaponnum;
     public GameObject[] weapons;
     public int[] wepdamages = { -1, -2, 0};
+    public int wepdamage;
     public int damage;
     public string attackname;
 
@@ -30,7 +31,6 @@ public class weaponManager : MonoBehaviour
             {
                 weapon.SetActive(true);
                 currentweapon = weapon;
-                damage = wepdamages[weaponnum];
                 damage = wepdamages[weaponnum];
                 weapontext.text = weapon.name;
             }

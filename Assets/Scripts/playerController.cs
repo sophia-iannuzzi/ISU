@@ -79,6 +79,7 @@ public class playerController : MonoBehaviour
         }
         if (playeranimatorController.GetBool("attackover") == false)
         {
+            weaponManager.currentweapon.GetComponent<Collider>().enabled = false;
             Vector3 cameradirectionforward = new Vector3(cameraobject.transform.forward.x, 0.0f, cameraobject.transform.forward.z).normalized;
             Vector3 cameradirectionright = new Vector3(cameraobject.transform.right.x, 0.0f, cameraobject.transform.right.z).normalized;
             movedirection = cameradirectionright * movementx + cameradirectionforward * movementy;
@@ -135,6 +136,8 @@ public class playerController : MonoBehaviour
                 {
                     playeranimatorController.Play("drawbow");
                     playeranimatorController.SetBool("aiming", true);
+                    
+                    playeranimatorController.SetTrigger("attackover");
 
                 }
                 else
@@ -143,9 +146,7 @@ public class playerController : MonoBehaviour
                     GameObject shotarrow = Instantiate(arrow, arrowoff, cameraobject.transform.rotation);
 
                     playeranimatorController.SetBool("aiming", false);
-                    playeranimatorController.SetTrigger("attackover");
                     shotarrow.GetComponent<Rigidbody>().AddForce(cameraobject.transform.forward.normalized * arrowspeed);
-                    playeranimatorController.SetTrigger("attackover");
 
                     playerInventory.arrowchange(-1);
                 }
@@ -157,6 +158,7 @@ public class playerController : MonoBehaviour
         }
         else
         {
+            weaponManager.currentweapon.GetComponent<Collider>().enabled = true;
             playeranimatorController.Play(attack + "attack");
             playeranimatorController.SetTrigger("attackover");
         }

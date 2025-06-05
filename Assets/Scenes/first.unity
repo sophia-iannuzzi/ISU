@@ -1487,6 +1487,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3045561005256307123, guid: 8254cf40c7eecd8448db7db20d139e13, type: 3}
+      propertyPath: maxhealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760320285313561842, guid: 8254cf40c7eecd8448db7db20d139e13, type: 3}
+      propertyPath: m_TagString
+      value: movementview
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3693,10 +3701,6 @@ PrefabInstance:
     - target: {fileID: 4745113166622038042, guid: 32638f9d72469184289a6abe62575f85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5657947045249858633, guid: 32638f9d72469184289a6abe62575f85, type: 3}
-      propertyPath: speed
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5657947045249858633, guid: 32638f9d72469184289a6abe62575f85, type: 3}
       propertyPath: moneytext

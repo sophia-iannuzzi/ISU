@@ -7,9 +7,9 @@ public class dragonController : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator dragonanimatorController;
+    private dragonAttack dragonAttack;
     [SerializeField] private bool chasing;
 
-    private bool attacking;
     public float attackrange;
     public float chaserange;
     private GameObject player;
@@ -19,14 +19,14 @@ public class dragonController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         dragonanimatorController = GetComponent<Animator>();
+        dragonAttack = GetComponentInChildren<dragonAttack>();
         time = 0;
         chasing = false;
-        attacking = false;
     }
 
     void Update()
     {
-        if (player != null)
+        if (player != null && chasing == true)
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
             if (distance <= chaserange)
@@ -37,6 +37,7 @@ public class dragonController : MonoBehaviour
                 }
                 else if (dragonanimatorController.GetBool("attackdone") == false)
                 {
+                    dragonAttack.boxcollider.enabled = false;
                     chase();
                 }
                 time += Time.deltaTime;
@@ -60,7 +61,9 @@ public class dragonController : MonoBehaviour
 
     void attack()
     {
+        dragonAttack.SetCollider();
         time = 0;
+        chasing = false;
 
         agent.SetDestination(transform.position);
 
@@ -76,6 +79,7 @@ public class dragonController : MonoBehaviour
             {
                 player = other.gameObject;
             }
+            chasing = true;
         }
     }
 }
