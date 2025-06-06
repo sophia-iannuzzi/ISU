@@ -5,9 +5,11 @@ using UnityEngine.AI;
 public class dragonController : MonoBehaviour
 {
 
+    public GameObject prefab;
     private NavMeshAgent agent;
     private Animator dragonanimatorController;
     private dragonAttack dragonAttack;
+    private dragonHealth dragonHealth;
     [SerializeField] private bool chasing;
 
     public float attackrange;
@@ -15,17 +17,27 @@ public class dragonController : MonoBehaviour
     private GameObject player;
 
     private float time;
+    private Vector3 ogposition;
+    private Quaternion ogrotation;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         dragonanimatorController = GetComponent<Animator>();
         dragonAttack = GetComponentInChildren<dragonAttack>();
+        dragonHealth = GetComponentInChildren<dragonHealth>();
+
+        ogposition = transform.position;
+        ogrotation = transform.rotation;
         time = 0;
         chasing = false;
     }
 
     void Update()
     {
+        if (player != null && player.GetComponent<playerHealth>().death == true)
+        {
+            Reset();
+        }
         if (player != null && chasing == true)
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
@@ -41,6 +53,10 @@ public class dragonController : MonoBehaviour
                     chase();
                 }
                 time += Time.deltaTime;
+            }
+            else
+            {
+                chasing = false;
             }
         }
     }
@@ -61,17 +77,18 @@ public class dragonController : MonoBehaviour
 
     void attack()
     {
+        dragonanimatorController.SetBool("walking", false);
+        agent.SetDestination(transform.position);
+
         dragonAttack.SetCollider();
         time = 0;
         chasing = false;
-
-        agent.SetDestination(transform.position);
 
         dragonanimatorController.Play("attack");
         dragonanimatorController.SetTrigger("attackdone");
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "player")
         {
@@ -82,4 +99,12 @@ public class dragonController : MonoBehaviour
             chasing = true;
         }
     }
+
+    void Reset()
+    {
+        Instantiate(prefab, ogposition, ogrotation);
+        Destroy(gameObject);
+    }
+
+
 }

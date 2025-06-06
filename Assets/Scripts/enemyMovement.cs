@@ -26,6 +26,7 @@ public class enemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (transform.parent.gameObject.transform.GetComponentInChildren<enemyHealth>().currenthealth <= 0)
         if (chasing == true && goblinAnimationController.GetBool("attackdone") == false)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < attackrange)
@@ -38,7 +39,7 @@ public class enemyMovement : MonoBehaviour
                 agent.SetDestination(player.transform.position);
             }
         }
-        else if (chasing != true)
+        else if (chasing == false)
         {
             patrol();
         }

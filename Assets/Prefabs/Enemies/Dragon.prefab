@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142324b3e388db34c9b4adf2435c3ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 139696}
   chasing: 0
   attackrange: 7
   chaserange: 18
@@ -4230,7 +4231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0de574c8a9cd04eb2a348f56462243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 2
+  maxhealth: 10
   currenthealth: 0
 --- !u!1 &6760320285313561842
 GameObject:
@@ -4244,7 +4245,7 @@ GameObject:
   - component: {fileID: 2392343391777432193}
   m_Layer: 0
   m_Name: movement
-  m_TagString: Untagged
+  m_TagString: movementview
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
