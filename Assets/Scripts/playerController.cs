@@ -156,6 +156,7 @@ public class playerController : MonoBehaviour
                 Debug.Log("not enough arrows");
             }
         }
+        
         else
         {
             weaponManager.currentweapon.GetComponent<Collider>().enabled = true;

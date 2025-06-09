@@ -24,6 +24,7 @@ public class playerInventory : MonoBehaviour
         moneytext.text = "Money: " + money;
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "coin")

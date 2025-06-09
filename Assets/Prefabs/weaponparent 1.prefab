@@ -544,6 +544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5391452421066879632}
   - component: {fileID: 5012657142930029756}
+  - component: {fileID: 8528128727947308176}
   m_Layer: 0
   m_Name: bow
   m_TagString: Untagged
@@ -590,6 +591,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &8528128727947308176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581262188929211073}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3731947150227876691
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +760,7 @@ MonoBehaviour:
   - {fileID: 2585113916311582697}
   - {fileID: 3581262188929211073}
   wepdamages: fefffffffbffffff00000000
+  wepdamage: 0
   damage: -1
   attackname: sword
   currentweapon: {fileID: 0}

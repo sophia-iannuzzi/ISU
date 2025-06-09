@@ -1,15 +1,15 @@
 using UnityEngine.AI;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class enemyMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Animator goblinAnimationController;
     private dragonAttack dragonAttack;
+    private Vector3 start;
     [SerializeField] private bool chasing;
     public GameObject player;
-
-    public float speed;
     public float attackrange;
 
     float movedirectionx;
@@ -19,6 +19,7 @@ public class enemyMovement : MonoBehaviour
     {
         goblinAnimationController = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        start = transform.position;
         dragonAttack = GetComponentInChildren<dragonAttack>();
         chasing = false;
 
@@ -26,7 +27,6 @@ public class enemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (transform.parent.gameObject.transform.GetComponentInChildren<enemyHealth>().currenthealth <= 0)
         if (chasing == true && goblinAnimationController.GetBool("attackdone") == false)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < attackrange)
@@ -47,7 +47,6 @@ public class enemyMovement : MonoBehaviour
 
     void attack()
     {
-        // dragonAttack.attack();
         agent.SetDestination(transform.position);
         goblinAnimationController.SetBool("walking", true);
         goblinAnimationController.SetTrigger("attackdone");
@@ -59,8 +58,11 @@ public class enemyMovement : MonoBehaviour
         float numx = Random.Range(-10, 10);
         float numz = Random.Range(-10, 10);
         Vector3 newpos = new Vector3(transform.position.x + numx, 0.0f, transform.position.z + numz);
-        agent.SetDestination(newpos);
-        goblinAnimationController.SetBool("walking", true);
+        if (Vector2.Distance(newpos, start) < 10)
+        {
+            agent.SetDestination(newpos);
+            goblinAnimationController.SetBool("walking", true);
+        }
     }
 
     void OnTriggerEnter(Collider other)
