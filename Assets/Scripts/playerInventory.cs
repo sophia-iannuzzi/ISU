@@ -29,7 +29,6 @@ public class playerInventory : MonoBehaviour
     {
         if (other.tag == "coin")
         {
-            Debug.Log("coin picup");
             Destroy(other.gameObject);
             money++;
             moneytext.text = "Money: " + money;

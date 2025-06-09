@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.InputSystem;
 
 public class playerHealth : MonoBehaviour
 {
@@ -22,9 +23,11 @@ public class playerHealth : MonoBehaviour
     {
         if (death == true)
         {
+            gameObject.GetComponentInChildren<PlayerInput>().enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
-            //player animation
+
+            gameObject.GetComponent<Animator>().Play("death");
             if (deathtimer > 3)
             {
                 playerDeath();
@@ -53,8 +56,9 @@ public class playerHealth : MonoBehaviour
 
         death = false;
         deathtimer = 0;
-
+        gameObject.GetComponent<Animator>().Play("idle");
         gameObject.GetComponent<Collider>().enabled = true;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
+        gameObject.GetComponentInChildren<PlayerInput>().enabled = true;
     }
 }

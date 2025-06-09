@@ -6,17 +6,19 @@ public class enemySpawn : MonoBehaviour
 
     public GameObject enemygreen;
     private float time;
+    private int timeplus;
     private int enemycount;
 
     void Start()
     {
+        timeplus = Random.Range(3, 10);
         time = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (time > 6 && enemycount < 50)
+        if (time > 8 + timeplus && enemycount < 15)
         {
             int numx = Random.Range(-10, 10);
             int numz = Random.Range(-10, 10);

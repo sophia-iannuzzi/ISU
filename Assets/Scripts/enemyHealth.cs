@@ -21,11 +21,13 @@ public class enemyHealth : MonoBehaviour
         if (currenthealth <= 0)
         {
             transform.parent.gameObject.transform.Find("badmovement").GetComponent<Collider>().enabled = false;
+            parentholder.GetComponent<enemyMovement>().chasing = false;
+            parentholder.GetComponent<enemyMovement>().death = true;
             if (deathtimer == 0)
             {
                 GetComponentInParent<Animator>().Play("death");
             }
-            if (deathtimer > 3)
+            if (deathtimer > 2)
             {
                 death();
             }

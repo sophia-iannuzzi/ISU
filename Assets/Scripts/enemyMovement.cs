@@ -8,7 +8,8 @@ public class enemyMovement : MonoBehaviour
     private Animator goblinAnimationController;
     private dragonAttack dragonAttack;
     private Vector3 start;
-    [SerializeField] private bool chasing;
+    public bool chasing;
+    public bool death;
     public GameObject player;
     public float attackrange;
 
@@ -22,6 +23,7 @@ public class enemyMovement : MonoBehaviour
         start = transform.position;
         dragonAttack = GetComponentInChildren<dragonAttack>();
         chasing = false;
+        death = false;
 
     }
 
@@ -39,7 +41,7 @@ public class enemyMovement : MonoBehaviour
                 agent.SetDestination(player.transform.position);
             }
         }
-        else if (chasing == false)
+        else if (chasing == false && death == false)
         {
             patrol();
         }

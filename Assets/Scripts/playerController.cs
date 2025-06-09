@@ -33,6 +33,8 @@ public class playerController : MonoBehaviour
     private playerInventory playerInventory;
     private float time;
 
+    public bool death;
+
     void Start()
     {
         Cursor.visible = false;
@@ -52,6 +54,7 @@ public class playerController : MonoBehaviour
         attack = weaponManager.attackname;
 
         speedused = false;
+        death = false;
     }
 
     public void OnMove(InputValue input)
@@ -67,6 +70,7 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+
         if (speedused == true)
         {
             time += Time.deltaTime;
