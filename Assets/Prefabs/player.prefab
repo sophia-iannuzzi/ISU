@@ -828,6 +828,8 @@ MonoBehaviour:
   cameraobject: {fileID: 0}
   weaponparent: {fileID: 6649496310393087649}
   arrowspeed: 1000
+  attacksound: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
+  death: 0
 --- !u!114 &4986104491214053954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1917,6 +1919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhealth: 5
   currenthealth: 5
+  deathtimer: 0
+  death: 0
   mainText: {fileID: 0}
 --- !u!136 &1219902029929444283
 CapsuleCollider:
@@ -1953,13 +1957,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb7ef79bb2b64045a55b661bef87c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1
-  healthpotion: 2
-  speedpotion: 2
-  arrows: 2
+  money: 0
+  healthpotion: 0
+  speedpotion: 0
+  arrows: 0
   potioncost: 2
   speed: 5
   moneytext: {fileID: 0}
+  speedpotiontext: {fileID: 0}
+  healthpotiontext: {fileID: 0}
+  arrowtext: {fileID: 0}
+  warningtext: {fileID: 0}
+  healsound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  speedsound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
 --- !u!1 &8342136136113701643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,6 +2170,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8301836696930670427}
     m_Modifications:
+    - target: {fileID: 1047942641439824557, guid: 2bec76da674cc074ea71afba653af663, type: 3}
+      propertyPath: weapontext
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3855081341451621879, guid: 2bec76da674cc074ea71afba653af663, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.013

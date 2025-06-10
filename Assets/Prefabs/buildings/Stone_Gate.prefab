@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 604799566753973073}
   - component: {fileID: 8109311496221745205}
   - component: {fileID: 7849865079097798838}
+  - component: {fileID: 8271802249413234169}
   m_Layer: 0
   m_Name: Stone_Gate_Pillar_Right
   m_TagString: Untagged
@@ -86,6 +87,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8271802249413234169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654746013128524656}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.034002785, y: 0.05040974, z: 0.35123986}
+  m_Center: {x: 0.048985858, y: 1.3648443e-15, z: 0.17623062}
 --- !u!1 &4845858068210854114
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +120,7 @@ GameObject:
   - component: {fileID: 8534126543889863927}
   - component: {fileID: 7479165488829762352}
   - component: {fileID: 8621814034698840971}
+  - component: {fileID: 1405898679766895769}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -117,7 +140,8 @@ Transform:
   m_LocalPosition: {x: -0.008761644, y: 3.4746618, z: 0}
   m_LocalScale: {x: 200.56683, y: 215.59381, z: 200.56683}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3703939423241886118}
   m_Father: {fileID: 8463032842513333052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8534126543889863927
@@ -186,6 +210,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8304170288963020975, guid: 32638f9d72469184289a6abe62575f85, type: 3}
+  gateopen: 0
+--- !u!65 &1405898679766895769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845858068210854114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0150000015, y: 0.010908803, z: 0.0005499998}
+  m_Center: {x: 0.00017249453, y: -0.0053594927, z: 1.1144287e-10}
 --- !u!1 &5628168986597596871
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8463032842513333052}
-  - component: {fileID: 9165264837784314126}
   m_Layer: 0
   m_Name: Stone_Gate
   m_TagString: Untagged
@@ -308,27 +353,6 @@ Transform:
   - {fileID: 604799566753973073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9165264837784314126
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6200663528768370238}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5.998089, y: 5.0852547, z: 1}
-  m_Center: {x: 0.08096552, y: 2.5046067, z: 0}
 --- !u!1 &7046122662932891378
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +364,7 @@ GameObject:
   - component: {fileID: 8879451523177324302}
   - component: {fileID: 5259932607581815149}
   - component: {fileID: 3731327480978378379}
+  - component: {fileID: 3388204253411274429}
   m_Layer: 0
   m_Name: Stone_Gate_Pillar_Left
   m_TagString: Untagged
@@ -415,3 +440,77 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3388204253411274429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046122662932891378}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0333022, y: 0.05040974, z: 0.35123986}
+  m_Center: {x: -0.04848939, y: 1.3648443e-15, z: 0.17623062}
+--- !u!1 &7091156480219286525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3703939423241886118}
+  - component: {fileID: 6403704736534308422}
+  m_Layer: 0
+  m_Name: trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3703939423241886118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091156480219286525}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8315060616209232792}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6403704736534308422
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091156480219286525}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03029956, y: 0.017096981, z: 0.007861096}
+  m_Center: {x: 0.000038330403, y: -0.007936813, z: 0.006300407}

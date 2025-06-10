@@ -1286,6 +1286,7 @@ MonoBehaviour:
   chasing: 0
   attackrange: 7
   chaserange: 18
+  attacksound: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
 --- !u!54 &1057371444199670117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4233,6 +4234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhealth: 10
   currenthealth: 0
+  deathneed: 0
+  frogobject: {fileID: 7863408018454545917, guid: 1d73ffc5b1838994eb6fba98fe86f345, type: 3}
 --- !u!1 &6760320285313561842
 GameObject:
   m_ObjectHideFlags: 0
